@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.WeatherActivity">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.demo.weathermvvm.viewmodel.WeatherViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="城市"
+            android:inputType="textPersonName"
+            android:text="@={viewModel.inputCity}" />
+
+        <Button
+            android:id="@+id/btn_request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="获取天气" />
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:padding="20dp"
+            android:gravity="center_horizontal"
+            android:background="@android:color/holo_orange_dark"
+            android:text="@{@string/result(viewModel.weatherInfo.result.realtime.temperature, viewModel.weatherInfo.result.realtime.humidity,viewModel.weatherInfo.result.realtime.aqi,viewModel.weatherInfo.result.realtime.direct,viewModel.weatherInfo.result.realtime.power)}"
+            android:visibility="@{(viewModel.errMsg == null &amp;&amp; viewModel.weatherInfo != null) ? View.VISIBLE : View.GONE}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:padding="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@android:color/darker_gray"
+            android:visibility="@{viewModel.errMsg == null ? View.GONE : View.VISIBLE}">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/error" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.errMsg}"
+                android:layout_marginTop="30dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

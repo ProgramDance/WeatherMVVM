@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeatherMvvm</string>
+    <string name="result">温度: %s\n湿度：%s\n空气质量：%s\n风向：%s\n风力：%s\n</string>
+
+</resources>
